@@ -1,0 +1,41 @@
+
+1, Service dùng cho tính năng ble control : 0x12AC
+    - Mỗi thuộc tính của thiết bị chứa trong 1 character
+    - Character 0xAC02 dùng để notify chung (chi tiết mục 2)
+2, Khi 1 thuộc tính của thiết bị thay đổi, sẽ có notify như sau:
+    - Character notify: 0xAC02
+    - Nội dung: {"id":abcd}
+    Trong đó abcd là uuid của character chứa thuộc tính thay đổi.
+    - Sau khi nhận được notify từ 0xAC02, mobile app đọc thông tin của thiết bị ở character tương ứng.
+Dữ liệu khi đọc có dạng:  {"d":<data>,"lid":<lid>,"pc":<property code>}
+trong đó:   <data>: data
+            <lid>: local id
+            <property code> : property code
+
+4, Khi mới kết nối, mobile app cần lấy toàn bộ thuộc tính của thiết bị, tiến hành như sau:
+    - write vào char AC02 nội dung: {"et":"NP"}
+    - thiết bị sẽ lần lượt có notify như ở mục (2)
+
+5, Reset lõi lọc
+Sử dụng phương thức control property gửi dữ liệu như sau:
+Character: AC02
+Nội dung: (chú ý viết json không chứa cách, tab bản tin ngắn gọn)
+    {
+        "et":"CP",
+        "pc":"iro_rsft",
+        "d":<số thứ tự lõi>
+    }
+
+6, các character chứa thuộc tính thiết bị:
+
+#define GATTS_CHAR_UUID_BLE_CONTROL_COM     0xAC02
+#define GATTS_CHAR_UUID_PRO_BOM             0xAC03
+#define GATTS_CHAR_UUID_PRO_KETNUOC         0xAC04
+#define GATTS_CHAR_UUID_PRO_NUOCVAO         0xAC05
+#define GATTS_CHAR_UUID_PRO_LTIME           0xAC06
+#define GATTS_CHAR_UUID_PRO_HSD             0xAC07
+#define GATTS_CHAR_UUID_PRO_RUNTIMETOTAL    0xAC08
+#define GATTS_CHAR_UUID_PRO_RUNTIMEREMAIN   0xAC09
+#define GATTS_CHAR_UUID_PRO_TDS             0xAC0A
+#define GATTS_CHAR_UUID_PRO_ERROR           0xAC0B
+#define GATTS_CHAR_UUID_PRO_VANXA           0xAC0C
