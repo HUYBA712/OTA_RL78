@@ -591,9 +591,10 @@ bool bldMcuVoice_checkData()
 
     for (uint16_t i = 0; i < 512; i++)
     {
-        if(bldMcuVoice_commandSendDataBlock(bufSend,256, (i==511)? true:false) == false)
+        if(bldVoice_binDataReadFromPartition(WriteAddress,bufSend,256) == false)
         {
-            return false;
+            printf("read fail %X\n", WriteAddress);
+            log_buf_mcuRsp(bufSend,256);
         }
         if(bldMcuVoice_commandSendDataBlock(bufSend,256, (i==511)? true:false) == false)
         {
