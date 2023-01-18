@@ -460,7 +460,7 @@ bool OtaHttp_createDoOtaTask()
 {
     if(!hasOtaTaskV2)
     {
-        xTaskCreate(otaTask_v2, "otaTask_v2", 4*1024, NULL, 5, NULL);
+        // xTaskCreate(otaTask_v2, "otaTask_v2", 4*1024, NULL, 5, NULL);
         return true;
     }
     return false;

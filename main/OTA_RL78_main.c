@@ -34,23 +34,24 @@ void printResetReason()
 void app_main()
 {
     // EWD_init();
-    nvs_flash_init();
-    printResetReason();
-    UART_Init();
-    Wifi_init();
-    setProductId_defaultMac();
+    // nvs_flash_init();
+    // printResetReason();
+    // UART_Init();
+    // Wifi_init();
+    // setProductId_defaultMac();
     
     // sprintf(g_product_Id, "%s", "43A00000030");
     // sprintf(g_password, "%s", "mkpsmarthome");
     // FlashHandle_initInfoPwd();
-    bldMcu_initPw();
+    // bldMcu_initPw();
     // MQTT_Init();
-
-    UART_CreateReceiveTask(); //start task receive UART
+    // bldMcuVoice_pinInit();
+    // bldMcuVoice_bootModeEntry();
+    // UART_CreateReceiveTask(); //start task receive UART
     // Out_LedIndicate();
     // GatewayConfig_autoCfg();
     UartVoice_Init();
-    // initDateTime();  
+    // // initDateTime();  
     bldMcuVoice_taskUpdate();
     while (1)
     {

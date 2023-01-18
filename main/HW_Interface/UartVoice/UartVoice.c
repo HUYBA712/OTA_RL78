@@ -503,9 +503,9 @@ void UartVoice_Init()
     };
     uart_driver_install(UART_NUM_VOICE, BUF_SIZE * 2, BUF_SIZE * 2, 10, &s_uartQueue, 0);
     uart_param_config(UART_NUM_VOICE, &uart_config);
-    uart_set_pin(UART_NUM_VOICE, VOICE_TXD_PIN, VOICE_RXD_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+    uart_set_pin(UART_NUM_VOICE, 17/*VOICE_TXD_PIN*/, 16/*VOICE_RXD_PIN*/, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
 
-    xTaskCreate(UartVoice_rxTask, "UartVoice_rxTask", 1024 * 5, NULL, 5, NULL);
+    // xTaskCreate(UartVoice_rxTask, "UartVoice_rxTask", 1024 * 5, NULL, 5, NULL);
 }
 
 /***********************************************/

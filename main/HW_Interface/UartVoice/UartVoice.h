@@ -19,7 +19,7 @@
 
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
-#define UART_NUM_VOICE UART_NUM_1
+#define UART_NUM_VOICE UART_NUM_2
 
 #define DYNAMIC_PW_LEN  8
 
